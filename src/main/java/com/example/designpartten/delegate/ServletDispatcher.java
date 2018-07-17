@@ -2,6 +2,7 @@ package com.example.designpartten.delegate;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,11 +34,28 @@ public class ServletDispatcher {
     }
     private void doDispatch(HttpServletRequest request, HttpServletResponse response){
         //1.获取用户请求URL（原来J2EE的标准是，每个url对应一个servlet，url由浏览器输入）
+        String uri = request.getRequestURI();
         //2.servlet拿到url以后，要权衡判断做选择
         //根据用户请求的url，去找某个Java类的某个方法。
         //3.通过拿到的URl去handlerMapping去找，把它认为是一个策略常量
+        Handler handle = null;
+        for(Handler h : handlerMapping){
+            if(uri.equals(h.getUrl())){
+                handle = h;
+                break;
+            }
+        }
         //4. 将具体的任务分发给method,通过反射区调用其对应的方法
+        Object object= null;
+        try {
+           object =  handle.getMethod().invoke(handle.getController(),request.getParameter("mid"));
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
         //5.获取到method的执行结果，通过response返回
+        //response.getWriter().write(object);
     }
     class Handler{
         private Object controller;
