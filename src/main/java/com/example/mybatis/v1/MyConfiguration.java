@@ -1,4 +1,4 @@
-package com.example.mybatis;
+package com.example.mybatis.v1;
 
 import java.lang.reflect.Proxy;
 import java.util.HashMap;
@@ -16,7 +16,7 @@ public class MyConfiguration {
     }
 
     static class UserMapperXml{
-        public static final String namespace="com.example.mybatis.UserMapper";
+        public static final String namespace="com.example.mybatis.v1.UserMapper";
         public  static final Map<String,String> methodSqlMapping = new HashMap<>();
         static{
             methodSqlMapping.put("selectByPrimaryKey","SELECT * FROM USER WHERE id = ?");

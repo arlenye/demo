@@ -1,11 +1,11 @@
-package com.example.mybatis;
+package com.example.mybatis.v1;
 
 /**
  * Created by James on 2018/7/21.
  */
 public class MySqlSession {
     private MyConfiguration configuration;
-    private MyExecutor  executor;
+    private MyExecutor executor;
 
     public MySqlSession(MyConfiguration configuration, MyExecutor executor) {
         this.configuration = configuration;
@@ -13,7 +13,7 @@ public class MySqlSession {
     }
 
 
-    public <T> T getMapper(Class clazz,MySqlSession sqlSession){
+    public <T> T getMapper(Class clazz, MySqlSession sqlSession){
         return configuration.getMapper(clazz,sqlSession);
     }
     public  <T> T selectOne(String statement,String parameter){

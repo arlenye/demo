@@ -1,4 +1,4 @@
-package com.example.mybatis;
+package com.example.mybatis.v1;
 
 import java.sql.*;
 
