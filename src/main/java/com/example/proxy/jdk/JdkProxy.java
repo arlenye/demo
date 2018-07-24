@@ -8,6 +8,7 @@ import java.lang.reflect.Proxy;
 
 /**
  * Created by James on 2018/7/14.
+ *
  */
 public class JdkProxy implements InvocationHandler{
     private Person target;
